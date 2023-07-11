@@ -21,9 +21,9 @@ export default function RootLayout({
         <header className="bg-cyan-700">
           <div className="flex justify-between px-5 py-4">
             <div>Play</div>
-            <h1 className="text-center text-cyan-60 semi-bold">
+            {/* <h1 className="text-center text-cyan-60 semi-bold">
               Conexion Celestial Radio
-            </h1>
+            </h1> */}
             <Link href={"una-vaina-loka"}>Iniciar Sesion</Link>
           </div>
 
