@@ -27,7 +27,7 @@ export default function RootLayout({
             <Link href={"una-vaina-loka"}>Iniciar Sesion</Link>
           </div>
 
-          <nav className="bg-cyan-800 ">
+          <nav className="bg-cyan-800">
             <ul className="text-cyan-100 flex justify-between px-5 max-w-xl mx-auto">
               <li>
                 <Link href={"/"} className="hover:underline">

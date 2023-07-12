@@ -1,3 +1,4 @@
+import { message } from "@/interfaces/res"
 import axios from "axios"
 
 const tokenDev =
@@ -20,8 +21,8 @@ export const getHelloWorld = () => {
     })
 }
 
-export const getMessages = () => {
-  return axios
+export const getMessages = async (): Promise<Array<message>> => {
+  const res = await axios
     .get(API_URL + "/messages", {
       headers: {
         Authorization: `Bearer ${tokenAdmin}`,
@@ -31,4 +32,5 @@ export const getMessages = () => {
       // console.log(res.data)
       return res.data
     })
+  return res
 }
