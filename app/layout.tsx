@@ -19,12 +19,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <header className="bg-cyan-700">
-          <div className="flex justify-between px-5 py-4">
+          <div className="flex justify-between px-5 py-4 text-sm">
             <div>Play</div>
-            {/* <h1 className="text-center text-cyan-60 semi-bold">
+            <h1 className="text-center text-cyan-60 semi-bold">
               Conexion Celestial Radio
-            </h1> */}
-            <Link href={"una-vaina-loka"}>Iniciar Sesion</Link>
+            </h1>
+            <Link href={"una-vaina-loka"}>Log in</Link>
           </div>
 
           <nav className="bg-cyan-800">

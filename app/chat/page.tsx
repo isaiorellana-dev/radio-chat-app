@@ -1,20 +1,17 @@
 "use client"
 import { getMessages } from "@/utils/messages"
+import MessageSender from "./components/MessagesSender"
 import Message from "./components/Message"
 import { useEffect, useRef, useState } from "react"
 import { message } from "@/interfaces/res"
 
 export default function Chat() {
   const [messages, setMessages] = useState<Array<message>>([])
-  const mainRef = useRef<HTMLDivElement>(null)
+
+  const messageContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     getMessages().then((res) => setMessages(res))
-
-    if (mainRef.current) {
-      console.log("hello")
-      mainRef.current.scrollTop = mainRef.current.clientHeight
-    }
 
     const socket = new WebSocket("ws://localhost:5050/ws")
 
@@ -34,20 +31,28 @@ export default function Chat() {
     }
   }, [])
 
+  useEffect(() => {
+    if (messageContainerRef.current) {
+      messageContainerRef.current.scrollTop =
+        messageContainerRef.current.scrollHeight
+    }
+  }, [messages])
+
   return (
-    <main
-      className="flex flex-col items-center"
-      style={{
-        height: "calc(100vh - 80px)",
-        overflowY: "scroll",
-      }}
-      ref={mainRef}
-    >
-      <div>
+    <main className="flex flex-col items-center">
+      <div
+        style={{
+          height: "calc(100vh - 104px)",
+          overflowY: "scroll",
+        }}
+        ref={messageContainerRef}
+        className="max-w-sm"
+      >
         {messages.map((m, i) => (
           <Message key={m.id} message={m} index={i} />
         ))}
       </div>
+      <MessageSender />
     </main>
   )
 }
