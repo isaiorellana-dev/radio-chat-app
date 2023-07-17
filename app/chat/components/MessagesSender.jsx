@@ -5,30 +5,28 @@ const MessagesSender = () => {
   const [text, setText] = useState("")
 
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOjE5LCJOaWNrbmFtZSI6IlBlZHJvIiwiUm9sSUQiOjEsImV4cCI6MTY4OTUyNDIzN30.1KoWdIrDA4sf3lpaMP0sgWRKaux6iRQBoBTdo5XLK00"
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOjEsIk5pY2tuYW1lIjoiSXNhaSIsIlJvbElEIjoxLCJleHAiOjE2ODk1NDgwNDR9.Qwnv6nCGUF8yPgOnwvFY3no9utkew_enudYOpsCmrqU"
 
   const sendMessage = async () => {
-    if (text != "") {
-      await axios
-        .post(
-          "http://localhost:5050/api/v1/message",
-          {
-            body: text,
+    await axios
+      .post(
+        "http://localhost:5050/api/v1/messages",
+        {
+          body: text,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
-        .then(() => {
-          console.log("Mensaje enviado")
-          setText("")
-        })
-        .catch(() => {
-          console.log("error")
-        })
-    }
+        }
+      )
+      .then(() => {
+        console.log("Mensaje enviado")
+        setText("")
+      })
+      .catch(() => {
+        console.log("error")
+      })
   }
 
   return (
