@@ -1,12 +1,14 @@
 "use client"
-import { getMessages } from "@/utils/messages"
+
 import MessageSender from "./components/MessagesSender"
 import Message from "./components/Message"
 import { useEffect, useRef, useState } from "react"
 import { message } from "@/interfaces/res"
+import useMessages from "@/api/hooks/useMessages"
 
 export default function Chat() {
   const [messages, setMessages] = useState<Array<message>>([])
+  const { getMessages } = useMessages()
 
   const messageContainerRef = useRef<HTMLDivElement>(null)
 
