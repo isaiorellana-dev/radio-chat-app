@@ -1,3 +1,4 @@
+import { Providers } from "@/context/providers"
 import "./globals.css"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
@@ -53,7 +54,7 @@ export default function RootLayout({
           </nav>
         </header>
 
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   )

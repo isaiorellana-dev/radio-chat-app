@@ -15,6 +15,13 @@ export class AuthToken {
     return null
   }
 
+  setToken(token: string) {
+    if (token != "") {
+      localStorage.setItem(AuthToken.tokenKey, token)
+    }
+    this.loadToken()
+  }
+
   private loadToken() {
     const tokenExtracted = AuthToken.getTokenFromLocalStorage()
     if (tokenExtracted != null) {
@@ -24,20 +31,3 @@ export class AuthToken {
 
   accessToken?: string
 }
-
-// const useAuthToken = () => {
-//   let tokenKey = "token"
-
-//   const setTokenToLocalStorage = (token: string) => {
-//     localStorage.setItem(tokenKey, token)
-//   }
-
-//   const removeTokenFromLocalStorage = () => {
-//     localStorage.removeItem(tokenKey)
-//   }
-
-//   return {
-//     setTokenToLocalStorage,
-//     removeTokenFromLocalStorage,
-//   }
-// }
