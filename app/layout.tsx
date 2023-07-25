@@ -25,7 +25,7 @@ export default function RootLayout({
             <h1 className="text-center text-cyan-60 semi-bold">
               Conexion Celestial Radio
             </h1>
-            <Link href={"una-vaina-loka"}>Log in</Link>
+            <Link href={"/login"}>Log in</Link>
           </div>
 
           <nav className="bg-cyan-800">
