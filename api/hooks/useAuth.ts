@@ -15,6 +15,9 @@ const useAuth = () => {
       pin: credentials.pin,
     })
   }
+
+  // TODO: logOut func
+
   return { logIn }
 }
 

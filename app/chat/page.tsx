@@ -15,21 +15,27 @@ export default function Chat() {
   useEffect(() => {
     getMessages().then((res) => setMessages(res))
 
-    const socket = new WebSocket("ws://localhost:5050/ws")
+    let URL = ""
 
-    socket.onopen = () => {
-      console.log("Conectado al servidor WebSocket")
-    }
-    socket.onmessage = (event) => {
-      const mensaje = event.data
-      setMessages((lastMessages) => [...lastMessages, JSON.parse(mensaje)])
-    }
-    socket.onclose = () => {
-      console.log("Desconectado del servidor WebSocket")
-    }
+    if (process.env.NEXT_PUBLIC_WS_URL) {
+      URL = process.env.NEXT_PUBLIC_WS_URL
 
-    return () => {
-      socket.close()
+      const socket = new WebSocket(URL)
+
+      socket.onopen = () => {
+        console.log("Conectado al servidor WebSocket")
+      }
+      socket.onmessage = (event) => {
+        const mensaje = event.data
+        setMessages((lastMessages) => [...lastMessages, JSON.parse(mensaje)])
+      }
+      socket.onclose = () => {
+        console.log("Desconectado del servidor WebSocket")
+      }
+
+      return () => {
+        socket.close()
+      }
     }
   }, [])
 

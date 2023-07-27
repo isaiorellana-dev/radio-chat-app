@@ -2,7 +2,7 @@ import { Providers } from "@/context/providers"
 import "./globals.css"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
-import Link from "next/link"
+import Header from "./components/Header"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -19,42 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header className="bg-cyan-700">
-          <div className="flex justify-between px-5 py-4 text-sm">
-            <div>Play</div>
-            <h1 className="text-center text-cyan-60 semi-bold">
-              Conexion Celestial Radio
-            </h1>
-            <Link href={"/login"}>Log in</Link>
-          </div>
-
-          <nav className="bg-cyan-800">
-            <ul className="text-cyan-100 flex justify-between px-5 max-w-xl mx-auto">
-              <li>
-                <Link href={"/"} className="hover:underline">
-                  Inicio
-                </Link>
-              </li>
-              <li>
-                <Link href={"/chat"} className="hover:underline">
-                  Chat
-                </Link>
-              </li>
-              <li>
-                <Link href={"/quienes-somos"} className="hover:underline">
-                  ¿Quienes somos?
-                </Link>
-              </li>
-              <li>
-                <Link href={"/contacto"} className="hover:underline">
-                  Contacto
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        </header>
-
-        <Providers>{children}</Providers>
+        <Providers>
+          <Header></Header>
+          {children}
+        </Providers>
       </body>
     </html>
   )

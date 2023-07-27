@@ -11,3 +11,8 @@ export interface user {
   role: string
   created_at: string
 }
+
+export interface userData {
+  nickname: string
+  role: string
+}
