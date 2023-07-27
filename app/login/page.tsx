@@ -45,33 +45,50 @@ export default function Login() {
   }
 
   useEffect(() => {
-    console.log(auth)
     if (auth.isAuthenticated) {
       router.push("/")
     }
   }, [auth])
 
   return (
-    <div>
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <Formik
         initialValues={initialForm}
         onSubmit={(values) => {
           handleSubmit(values)
         }}
       >
-        {(formik) => (
-          <Form>
-            <label htmlFor="nickname">Nombre de usuario:</label>
-            <Field name="nickname" type="text" className="text-gray-950" />
-            <ErrorMessage name="nickname" component="p" />
+        {() => (
+          <Form className="flex flex-col items-center">
+            <div className="mb-2">
+              <label htmlFor="nickname" className="text-cyan-200">
+                Nombre de usuario:
+              </label>
+              <Field
+                name="nickname"
+                type="text"
+                className="text-gray-950 p-0.5"
+              />
+              <ErrorMessage name="nickname" component="p" />
+            </div>
 
-            <label htmlFor="password">Contraseña:</label>
-            <Field name="pin" type="password" className="text-gray-950" />
-            <ErrorMessage name="pin" component="p" />
-            <button type="submit">Log in</button>
+            <div className="mb-2">
+              <label htmlFor="password" className="text-cyan-200">
+                Contraseña:
+              </label>
+              <Field name="pin" type="password" className="text-gray-950" />
+              <ErrorMessage name="pin" component="p" />
+            </div>
+
+            <button
+              type="submit"
+              className="bg-cyan-400 hover:bg-cyan-300 p-1 rounded m-1 active:bg-cyan-200"
+            >
+              Log in
+            </button>
           </Form>
         )}
       </Formik>
-    </div>
+    </main>
   )
 }
