@@ -11,6 +11,8 @@ import { setUser } from "@/context/slices/UserSlice"
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 import { stateInterface } from "../../interfaces/redux"
+import { loginValidations } from "./loginValidations"
+import * as yup from "yup"
 
 const initialForm: loginCredentials = {
   nickname: "",
@@ -57,6 +59,7 @@ export default function Login() {
         onSubmit={(values) => {
           handleSubmit(values)
         }}
+        validationSchema={yup.object(loginValidations)}
       >
         {() => (
           <Form className="flex flex-col items-center">
@@ -69,15 +72,19 @@ export default function Login() {
                 type="text"
                 className="text-gray-950 p-0.5"
               />
-              <ErrorMessage name="nickname" component="p" />
+              <ErrorMessage
+                name="nickname"
+                component="p"
+                className="text-red-400"
+              />
             </div>
 
             <div className="mb-2">
               <label htmlFor="password" className="text-cyan-200">
-                Contraseña:
+                Pin:
               </label>
               <Field name="pin" type="password" className="text-gray-950" />
-              <ErrorMessage name="pin" component="p" />
+              <ErrorMessage name="pin" component="p" className="text-red-400" />
             </div>
 
             <button
