@@ -7,6 +7,7 @@ import { stateInterface } from "@/interfaces/redux"
 import Link from "next/link"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import Profile from "./common/Profile"
 
 const Header = () => {
   const { getUserData } = useUser()
@@ -33,8 +34,8 @@ const Header = () => {
         <h1 className="text-center text-cyan-50 semi-bold">
           Conexion Celestial Radio
         </h1>
-        {auth.isAuthenticated ? (
-          <p>{user.nickname}</p>
+        {auth.isAuthenticated && user.nickname ? (
+          <Profile nickname={user.nickname} />
         ) : (
           <Link href={"/login"}>Log in</Link>
         )}

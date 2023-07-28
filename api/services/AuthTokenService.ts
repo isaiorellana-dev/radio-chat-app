@@ -26,6 +26,11 @@ export class AuthToken {
     localStorage.removeItem(this._tokenKey)
   }
 
+  clearToken() {
+    this.removeToken()
+    AuthToken._accessToken = undefined
+  }
+
   private loadToken() {
     const tokenExtracted = this.getTokenFromLocalStorage()
     if (tokenExtracted != null) {
