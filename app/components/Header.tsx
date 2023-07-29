@@ -21,7 +21,7 @@ const Header = () => {
         dispatch(setAuth())
         dispatch(setUser(res.data))
       })
-      .catch((e) => {
+      .catch(() => {
         dispatch(logOut())
         dispatch(clearUser())
       })

@@ -1,6 +1,5 @@
 "use client"
 
-import useAuth from "@/api/hooks/useAuth"
 import { loginCredentials } from "@/interfaces/req"
 import { ErrorMessage, Field, Form, Formik } from "formik"
 import { AuthToken } from "../../api/services/AuthTokenService"
@@ -22,8 +21,7 @@ const initialForm: loginCredentials = {
 export default function Login() {
   const router = useRouter()
   const dispatch = useDispatch()
-  const { logIn } = useAuth()
-  const { getUserData } = useUser()
+  const { getUserData, logIn } = useUser()
   const tokenService = new AuthToken()
   const auth = useSelector((state: stateInterface) => state.auth)
 
