@@ -20,9 +20,19 @@ function useUser() {
     return await axiosInstance.get("/auth/user")
   }
 
+  const signUp = async (
+    credentials: loginCredentials
+  ): Promise<void | AxiosResponse<any, any>> => {
+    return await axiosInstance.post("/signup", {
+      nickname: credentials.nickname,
+      pin: credentials.pin,
+    })
+  }
+
   return {
     getUserData,
     logIn,
+    signUp,
   }
 }
 

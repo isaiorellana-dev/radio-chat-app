@@ -37,7 +37,7 @@ const Header = () => {
         {auth.isAuthenticated && user.nickname ? (
           <Profile nickname={user.nickname} />
         ) : (
-          <Link href={"/login"}>Log in</Link>
+          <Link href={"/login"}>Iniciar sesión</Link>
         )}
       </div>
 
