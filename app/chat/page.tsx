@@ -54,7 +54,7 @@ export default function Chat() {
           overflowY: "scroll",
         }}
         ref={messageContainerRef}
-        className="max-w-sm"
+        className="max-w-xl"
       >
         {messages.map((m, i) => (
           <Message key={m.id} message={m} index={i} />

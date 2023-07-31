@@ -29,10 +29,10 @@ const Header = () => {
 
   return (
     <header className="bg-cyan-700">
-      <div className="flex justify-between px-5 py-4 text-sm text-cyan-200">
+      <div className="flex justify-between px-2 py-4 text-sm text-cyan-300">
         <div>Play</div>
         <h1 className="text-center text-cyan-50 semi-bold">
-          Conexion Celestial Radio
+          Conexion Celestial
         </h1>
         {auth.isAuthenticated && user.nickname ? (
           <Profile nickname={user.nickname} />
@@ -42,23 +42,23 @@ const Header = () => {
       </div>
 
       <nav className="bg-cyan-800">
-        <ul className="text-cyan-100 flex justify-between px-5 max-w-xl mx-auto">
-          <li>
+        <ul className="text-cyan-100 text-xs flex justify-between px-2 max-w-xl mx-auto">
+          <li className="mx-2">
             <Link href={"/"} className="hover:underline">
               Inicio
             </Link>
           </li>
-          <li>
+          <li className="mx-1">
             <Link href={"/chat"} className="hover:underline">
               Chat
             </Link>
           </li>
-          <li>
+          <li className="mx-2">
             <Link href={"/quienes-somos"} className="hover:underline">
               ¿Quienes somos?
             </Link>
           </li>
-          <li>
+          <li className="mx-2">
             <Link href={"/contacto"} className="hover:underline">
               Contacto
             </Link>
