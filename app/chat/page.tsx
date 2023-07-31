@@ -50,7 +50,7 @@ export default function Chat() {
     <main className="flex flex-col items-center">
       <div
         style={{
-          height: "calc(100vh - 104px)",
+          height: "calc(100vh - 140px)",
           overflowY: "scroll",
         }}
         ref={messageContainerRef}
