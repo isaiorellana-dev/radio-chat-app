@@ -33,7 +33,15 @@ const MessagesSender = () => {
     )
   } else {
     return (
-      <div className="w-full bg-slate-500 flex justify-between">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault()
+          sendMessage(text).then(() => {
+            setText("")
+          })
+        }}
+        className="w-full bg-slate-500 flex justify-between"
+      >
         <input
           type="text"
           className="w-full text-slate-900 px-1.5"
@@ -42,18 +50,10 @@ const MessagesSender = () => {
             setText(e.target.value)
           }}
         />
-        <button
-          className="bg-cyan-500 p-0.5"
-          type="button"
-          onClick={() => {
-            sendMessage(text).then(() => {
-              setText("")
-            })
-          }}
-        >
+        <button className="bg-cyan-500 p-0.5" type="submit">
           Enviar
         </button>
-      </div>
+      </form>
     )
   }
 }
