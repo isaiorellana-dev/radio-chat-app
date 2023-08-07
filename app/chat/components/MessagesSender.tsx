@@ -12,24 +12,24 @@ const MessagesSender = () => {
 
   if (!auth.isAuthenticated) {
     return (
-      <div className="w-full bg-slate-500 flex justify-between">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault()
+          router.push("/login")
+        }}
+        className="w-full bg-slate-500 flex justify-between max-w-xl"
+      >
         <input
           type="text"
-          className="w-full text-slate-900 px-1.5"
+          className="w-full text-slate-900 px-1.5 h-9"
           placeholder="Inicia sesión para enviar mensajes."
           value={text}
           readOnly
         />
-        <button
-          className="bg-cyan-500 p-0.5"
-          type="button"
-          onClick={() => {
-            router.push("/login")
-          }}
-        >
+        <button className="bg-cyan-500 p-0.5" type="submit">
           Login
         </button>
-      </div>
+      </form>
     )
   } else {
     return (
@@ -40,11 +40,11 @@ const MessagesSender = () => {
             setText("")
           })
         }}
-        className="w-full bg-slate-500 flex justify-between"
+        className="w-full bg-slate-500 flex justify-between max-w-xl"
       >
         <input
           type="text"
-          className="w-full text-slate-900 px-1.5"
+          className="w-full text-slate-900 px-1.5 h-9"
           value={text}
           onChange={(e) => {
             setText(e.target.value)

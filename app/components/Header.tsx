@@ -42,7 +42,7 @@ const Header = () => {
       </div>
 
       <nav className="bg-cyan-800">
-        <ul className="text-cyan-100 text-xs flex justify-between px-2 max-w-xl mx-auto">
+        <ul className="text-cyan-100 text-sm flex justify-between px-2 max-w-xl mx-auto">
           <li className="mx-2">
             <Link href={"/"} className="hover:underline">
               Inicio
