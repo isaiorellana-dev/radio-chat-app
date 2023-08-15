@@ -6,11 +6,17 @@ import { useEffect, useRef, useState } from "react"
 import { message } from "@/interfaces/res"
 import useMessages from "@/api/hooks/useMessages"
 import { wsStates } from "@/interfaces/messagesState"
-import { OFFLINE_STATE, ONLINE_STATE } from "@/constants/const"
+import {
+  OFFLINE_STATE,
+  ONLINE_STATE,
+  PENDING,
+  REJECTED,
+  SUCCESS,
+} from "@/constants/const"
 
 export default function Chat() {
   const [messages, setMessages] = useState<Array<message>>([])
-  const [loading, setLoading] = useState("pending")
+  const [loading, setLoading] = useState(PENDING)
   const [wsState, setWsState] = useState<wsStates>(OFFLINE_STATE)
   const { getMessages } = useMessages()
 
@@ -18,10 +24,10 @@ export default function Chat() {
   getMessages()
     .then((res) => {
       setMessages(res)
-      setLoading("success")
+      setLoading(SUCCESS)
     })
     .catch(() => {
-      setLoading("rejected")
+      setLoading(REJECTED)
     })
   useEffect(() => {
     let URL = ""
@@ -63,46 +69,52 @@ export default function Chat() {
   const esPar = (n: number): boolean => n % 2 === 0
 
   return (
-    <main
-      className=" relative flex-grow flex flex-col items-center overflow-y-scroll"
-      ref={messageContainerRef}
-    >
-      {wsState == ONLINE_STATE && loading == "success" ? (
-        <p className="fixed w-full text-center text-sm  bg-cyan-100 text-cyan-600 font-bold">
+    <main className="relative flex-grow flex flex-col items-center h-full justify-between">
+      {wsState == ONLINE_STATE && loading == SUCCESS ? (
+        <p className="fixed w-full text-center text-sm  bg-cyan-100 text-cyan-600 font-bold z-10">
           Conectado{" "}
           <span className="text-lg animate-pulse leading-3 text-red-600">
             ●
           </span>
         </p>
       ) : (
-        <p className="fixed w-full text-center text-sm bg-gray-100 text-gray-400 font-bold">
+        <p className="absolute w-full text-center text-sm bg-gray-100 text-gray-400 font-bold z-10">
           Desconectado
         </p>
       )}
-      {loading == "rejected" && (
-        <div className="bg-slate-700 w-full max-w-xl h-screen py-20">
-          <p className="text-center text-red-300">
-            Hubo un error cargando los mensajes
-          </p>
-        </div>
-      )}
-      {loading == "pending" &&
-        numbersArray.map((item) => (
-          <div
-            key={item}
-            className={
-              esPar(item)
-                ? "bg-slate-700 w-full max-w-xl animate-pulse"
-                : "bg-slate-800 w-full max-w-xl animate-pulse"
-            }
-          >
-            <p className="text-left text-cyan-100 px-0.5 opacity-5">
-              Cargando mensaje
+
+      <div
+        className="w-full max-w-xl overflow-y-scroll flex flex-col items-center justify-center"
+        style={{
+          height: "calc(100vh - 108px)",
+        }}
+        ref={messageContainerRef}
+      >
+        {loading == REJECTED && (
+          <div className="bg-slate-700 w-full h-full max-w-xl py-20">
+            <p className="text-center text-red-300">
+              Hubo un error cargando los mensajes
             </p>
           </div>
-        ))}
-      {loading == "success" &&
-        messages.map((m, i) => <Message key={m.id} message={m} index={i} />)}
+        )}
+        {loading == PENDING &&
+          numbersArray.map((item) => (
+            <div
+              key={item}
+              className={
+                esPar(item)
+                  ? "bg-slate-700 w-full max-w-xl animate-pulse"
+                  : "bg-slate-800 w-full max-w-xl animate-pulse"
+              }
+            >
+              <p className="text-left text-cyan-100 px-0.5 opacity-5">
+                Cargando mensaje
+              </p>
+            </div>
+          ))}
+        {loading == SUCCESS &&
+          messages.map((m, i) => <Message key={m.id} message={m} index={i} />)}
+      </div>
       <MessageSender />
     </main>
   )

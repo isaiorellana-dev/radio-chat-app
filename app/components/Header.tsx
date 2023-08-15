@@ -31,7 +31,7 @@ const Header = () => {
     <header className="bg-cyan-700">
       <div className="flex justify-between px-2 py-4 text-sm text-cyan-300">
         <div>Play</div>
-        <h1 className="text-center text-cyan-50 semi-bold">
+        <h1 className="text-center text-cyan-50 font-bold">
           Conexion Celestial
         </h1>
         {auth.isAuthenticated && user.nickname ? (
