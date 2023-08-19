@@ -25,7 +25,7 @@ export default function Chat() {
   useEffect(() => {
     getMessages()
       .then((res) => {
-        setMessages(res)
+        setMessages(res.reverse())
         setLoading(SUCCESS)
       })
       .catch(() => {
@@ -88,7 +88,7 @@ export default function Chat() {
       <div
         className="w-full max-w-xl overflow-y-scroll flex flex-col items-center justify-center"
         style={{
-          height: "calc(100vh - 328px)",
+          height: "calc(100vh - 212px)",
         }}
         ref={messageContainerRef}
       >
@@ -119,10 +119,8 @@ export default function Chat() {
       </div>
       <MessageSender />
       <div className="w-full p-1 h-28">
-        <p className="text-cyan-50">
-          Por favor respetar a todos los participantes del chat, los mensajes
-          inapropiados, fuera de lugar o que intenten agredir a las demas
-          personas provocaran que la cuenta sea eliminada.
+        <p className="text-cyan-600 text-center">
+          Por favor respetar a todos los participantes del chat.
         </p>
       </div>
     </main>
