@@ -25,7 +25,7 @@ export default function Chat() {
   useEffect(() => {
     getMessages()
       .then((res) => {
-        setMessages(res.reverse())
+        setMessages(res)
         setLoading(SUCCESS)
       })
       .catch(() => {
