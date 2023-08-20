@@ -5,7 +5,7 @@ import { logOut, setAuth } from "@/context/slices/AuthSlice"
 import { clearUser, setUser } from "@/context/slices/UserSlice"
 import { stateInterface } from "@/interfaces/redux"
 import Link from "next/link"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import Profile from "./common/Profile"
 
@@ -14,6 +14,21 @@ const Header = () => {
   const auth = useSelector((state: stateInterface) => state.auth)
   const user = useSelector((state: stateInterface) => state.user)
   const dispatch = useDispatch()
+
+  const [isPlaying, setIsPlaying] = useState(false)
+  const audioURL = "https://stream504.live/8116/stream" // Reemplaza con la URL de tu audio
+
+  const togglePlay = () => {
+    const audioElement = document.getElementById("audio") as HTMLAudioElement
+
+    if (isPlaying) {
+      audioElement?.pause()
+    } else {
+      audioElement?.play()
+    }
+
+    setIsPlaying(!isPlaying)
+  }
 
   useEffect(() => {
     getUserData()
@@ -30,7 +45,9 @@ const Header = () => {
   return (
     <header className="bg-cyan-700">
       <div className="flex justify-between px-2 py-4 text-sm text-cyan-300">
-        <div>Play</div>
+        <button onClick={togglePlay}>{isPlaying ? "Pause" : "Play"}</button>
+        <audio id="audio" src={audioURL}></audio>
+
         <h1 className="text-center text-cyan-50 font-bold">
           Conexion Celestial
         </h1>
@@ -56,11 +73,6 @@ const Header = () => {
           <li className="mx-2">
             <Link href={"/quienes-somos"} className="hover:underline">
               ¿Quienes somos?
-            </Link>
-          </li>
-          <li className="mx-2">
-            <Link href={"/contacto"} className="hover:underline">
-              Contacto
             </Link>
           </li>
         </ul>

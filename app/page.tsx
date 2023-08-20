@@ -62,6 +62,14 @@ export default function Home() {
             </li>
             <li className="text-emerald-100 px-2 hover:underline">
               <a
+                href="https://api.whatsapp.com/send/?phone=50498474931&text&type=phone_number&app_absent=0"
+                target="_blank"
+              >
+                WhatsApp
+              </a>
+            </li>
+            <li className="text-emerald-100 px-2 hover:underline">
+              <a
                 href="https://www.youtube.com/channel/UCqp9JFdI0ZntwVnLcTs-4HQ"
                 target="_blank"
               >
