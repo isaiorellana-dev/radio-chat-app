@@ -1,5 +1,3 @@
-import "react-h5-audio-player/lib/styles.css"
-
 export default function AboutUs() {
   return (
     <main className="flex min-h-screen flex-col items-center p-5">
