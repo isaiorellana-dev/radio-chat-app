@@ -1,29 +1,4 @@
-"use client"
-import React, { useEffect } from "react"
-
 const MyTunerWidget = () => {
-  // useEffect(() => {
-  //   const myTunerWidgetScript = document.createElement("script")
-  //   myTunerWidgetScript.type = "text/javascript"
-  //   myTunerWidgetScript.src =
-  //     "https://mytuner-radio.com/static/js/widgets/widget-player-v1.js"
-  //   myTunerWidgetScript.defer = true
-
-  //   const myTunerPlayerScript = document.createElement("script")
-  //   myTunerPlayerScript.type = "text/javascript"
-  //   myTunerPlayerScript.src =
-  //     "https://mytuner-radio.com/static/js/widgets/player-v1.js"
-  //   myTunerPlayerScript.defer = true
-
-  //   document.head.appendChild(myTunerWidgetScript)
-  //   document.head.appendChild(myTunerPlayerScript)
-
-  //   return () => {
-  //     document.head.removeChild(myTunerWidgetScript)
-  //     document.head.removeChild(myTunerPlayerScript)
-  //   }
-  // }, [])
-
   return (
     <div
       dangerouslySetInnerHTML={{
