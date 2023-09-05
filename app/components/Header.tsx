@@ -44,7 +44,7 @@ const Header = () => {
 
   return (
     <header className="bg-cyan-700">
-      <div className="flex justify-between px-2 py-4 text-sm text-cyan-300">
+      <div className="flex justify-between px-2 py-1 text-sm text-cyan-300">
         <button onClick={togglePlay}>{isPlaying ? "Pause" : "Play"}</button>
         <audio id="audio" src={audioURL}></audio>
 
